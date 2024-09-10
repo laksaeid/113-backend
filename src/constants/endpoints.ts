@@ -1,8 +1,5 @@
 export const ENDPOINTS = {
-  products: {
-    get: "/api/products",
-  },
-  categories: {
-    get: "/api/categories",
-  },
+  products: "/api/products",
+  categories: "/api/categories",
+  subcategories: "/api/subcategories",
 };

@@ -1,20 +1,24 @@
 import { useQuery } from "@tanstack/react-query";
+import { Layout } from "./components";
+import AddCategories from "./components/AddCategories";
+import { ENDPOINTS } from "./constants/endpoints";
 import { instance } from "./utils/instance";
 import { ProductType } from "./types/product";
-import { ENDPOINTS } from "./constants/endpoints";
-import { Layout } from "./components";
 
 function App() {
   const { data } = useQuery<ProductType>({
-    queryKey: [ENDPOINTS.products.get],
-    queryFn: async () => (await instance(ENDPOINTS.products.get)).data,
+    queryKey: [ENDPOINTS.products],
+    queryFn: async () =>
+      (await instance(ENDPOINTS.products + "?limit=99999")).data,
   });
-
   return (
     <Layout>
-      {data?.data.products?.map((item) => (
-        <p key={item._id}> {item.name} </p>
-      ))}
+      <AddCategories />
+      <div>
+        {data?.data.products?.map((i) => (
+          <p>{i.name}</p>
+        ))}
+      </div>
     </Layout>
   );
 }
