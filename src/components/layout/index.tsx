@@ -1,9 +1,6 @@
-import { ReactNode } from "react";
+import { Outlet } from "react-router-dom";
 
-interface Props {
-  children: ReactNode;
-}
-export const Layout = ({ children }: Props) => {
+export const Layout = () => {
   return (
     <div className="flex flex-col h-screen">
       <div className="bg-red-200">
@@ -13,7 +10,9 @@ export const Layout = ({ children }: Props) => {
           <a href="#">3</a>
         </header>
       </div>
-      <div className="flex-1">{children}</div>
+      <div className="flex-1 myContainer w-full">
+        <Outlet />
+      </div>
       <div className="bg-blue-200">
         <footer className="myContainer bg-blue-500">footer</footer>
       </div>
